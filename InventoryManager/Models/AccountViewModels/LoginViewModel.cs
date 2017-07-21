@@ -9,6 +9,10 @@ namespace InventoryManager.Models.AccountViewModels
     public class LoginViewModel
     {
         [Required]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+
+        
         [EmailAddress]
         public string Email { get; set; }
 
