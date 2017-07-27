@@ -9,7 +9,7 @@ namespace InventoryManager.Models.AccountViewModels
     public class RegisterViewModel
     {
         [Required]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         
         [EmailAddress]

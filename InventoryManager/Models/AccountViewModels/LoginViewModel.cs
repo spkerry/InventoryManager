@@ -10,11 +10,7 @@ namespace InventoryManager.Models.AccountViewModels
     {
         [Required]
         [Display(Name = "Username")]
-        public string Username { get; set; }
-
-        
-        [EmailAddress]
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
