@@ -10,6 +10,13 @@ namespace InventoryManager.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
+        public DbSet<InventoryItem> Items { get; set; }
+        public DbSet<InventoryCategory> Catagories { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Vendor> Vendors { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

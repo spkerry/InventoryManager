@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 
 namespace InventoryManager.Models
 {
-    public class InventoryOrder
+    public class Inventory
     {
+        public DateTime Date { get; set; }
+        public bool Current { get; set; }
+
         public int InventoryID { get; set; }
         public InventoryItem Item { get; set; }
         

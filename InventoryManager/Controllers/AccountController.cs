@@ -70,7 +70,7 @@ namespace InventoryManager.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    return Redirect("/Inventory");
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -112,7 +112,7 @@ namespace InventoryManager.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName.ToString() , Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName.ToString()};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -125,7 +125,8 @@ namespace InventoryManager.Controllers
                     user.StatusID = 1;
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    return await Logout();
+                    //return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
             }
@@ -142,7 +143,7 @@ namespace InventoryManager.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(AccountController.Login));
         }
 
         //
