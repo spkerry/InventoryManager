@@ -12,7 +12,8 @@ namespace InventoryManager.Models
         public float Cost { get; set; }
         public DateTime DateAdded { get; set; }
         public string Unit { get; set; }
-        public string Upc { get; set; }        
+        public string Upc { get; set; }
 
+        public IList<InventoryItem> Items { get; set; }
     }
 }

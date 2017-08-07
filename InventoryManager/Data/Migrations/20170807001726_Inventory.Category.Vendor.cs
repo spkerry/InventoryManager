@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace InventoryManager.Data.Migrations
 {
-    public partial class Inventory : Migration
+    public partial class InventoryCategoryVendor : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Catagories",
+                name: "Categories",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
@@ -19,7 +19,7 @@ namespace InventoryManager.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Catagories", x => x.ID);
+                    table.PrimaryKey("PK_Categories", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,18 +48,20 @@ namespace InventoryManager.Data.Migrations
                     CategoryID = table.Column<int>(nullable: false),
                     Cost = table.Column<float>(nullable: false),
                     DateAdded = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Quantity = table.Column<float>(nullable: false),
                     Upc = table.Column<string>(nullable: true),
+                    Usage = table.Column<float>(nullable: false),
                     VendorID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Items", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Items_Catagories_CategoryID",
+                        name: "FK_Items_Categories_CategoryID",
                         column: x => x.CategoryID,
-                        principalTable: "Catagories",
+                        principalTable: "Categories",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -69,49 +71,6 @@ namespace InventoryManager.Data.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Inventories",
-                columns: table => new
-                {
-                    InventoryID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Current = table.Column<bool>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Discriminator = table.Column<string>(nullable: false),
-                    ItemID = table.Column<int>(nullable: true),
-                    OrderID = table.Column<int>(nullable: false),
-                    ID = table.Column<int>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    OrderDate = table.Column<DateTime>(nullable: true),
-                    ReceivedDate = table.Column<DateTime>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Inventories", x => x.InventoryID);
-                    table.ForeignKey(
-                        name: "FK_Inventories_Items_ItemID",
-                        column: x => x.ItemID,
-                        principalTable: "Items",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Inventories_Inventories_OrderID",
-                        column: x => x.OrderID,
-                        principalTable: "Inventories",
-                        principalColumn: "InventoryID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Inventories_ItemID",
-                table: "Inventories",
-                column: "ItemID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Inventories_OrderID",
-                table: "Inventories",
-                column: "OrderID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Items_CategoryID",
@@ -127,13 +86,10 @@ namespace InventoryManager.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Inventories");
-
-            migrationBuilder.DropTable(
                 name: "Items");
 
             migrationBuilder.DropTable(
-                name: "Catagories");
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Vendors");

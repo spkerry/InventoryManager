@@ -8,8 +8,8 @@ using InventoryManager.Data;
 namespace InventoryManager.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170801010915_Inventory")]
-    partial class Inventory
+    [Migration("20170807001726_Inventory.Category.Vendor")]
+    partial class InventoryCategoryVendor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,33 +69,6 @@ namespace InventoryManager.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("InventoryManager.Models.Inventory", b =>
-                {
-                    b.Property<int>("InventoryID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("Current");
-
-                    b.Property<DateTime>("Date");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
-                    b.Property<int?>("ItemID");
-
-                    b.Property<int>("OrderID");
-
-                    b.HasKey("InventoryID");
-
-                    b.HasIndex("ItemID");
-
-                    b.HasIndex("OrderID");
-
-                    b.ToTable("Inventories");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Inventory");
-                });
-
             modelBuilder.Entity("InventoryManager.Models.InventoryCategory", b =>
                 {
                     b.Property<int>("ID")
@@ -105,7 +78,7 @@ namespace InventoryManager.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Catagories");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("InventoryManager.Models.InventoryItem", b =>
@@ -119,11 +92,15 @@ namespace InventoryManager.Data.Migrations
 
                     b.Property<DateTime>("DateAdded");
 
+                    b.Property<DateTime>("DateModified");
+
                     b.Property<string>("Name");
 
                     b.Property<float>("Quantity");
 
                     b.Property<string>("Upc");
+
+                    b.Property<float>("Usage");
 
                     b.Property<int>("VendorID");
 
@@ -263,35 +240,6 @@ namespace InventoryManager.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("InventoryManager.Models.Order", b =>
-                {
-                    b.HasBaseType("InventoryManager.Models.Inventory");
-
-                    b.Property<int>("ID");
-
-                    b.Property<string>("Name");
-
-                    b.Property<DateTime>("OrderDate");
-
-                    b.Property<DateTime>("ReceivedDate");
-
-                    b.ToTable("Order");
-
-                    b.HasDiscriminator().HasValue("Order");
-                });
-
-            modelBuilder.Entity("InventoryManager.Models.Inventory", b =>
-                {
-                    b.HasOne("InventoryManager.Models.InventoryItem", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemID");
-
-                    b.HasOne("InventoryManager.Models.Order", "Order")
-                        .WithMany("Inventory")
-                        .HasForeignKey("OrderID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("InventoryManager.Models.InventoryItem", b =>
                 {
                     b.HasOne("InventoryManager.Models.InventoryCategory", "Category")
@@ -300,7 +248,7 @@ namespace InventoryManager.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("InventoryManager.Models.Vendor", "Vendor")
-                        .WithMany()
+                        .WithMany("Items")
                         .HasForeignKey("VendorID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -10,6 +10,8 @@ namespace InventoryManager.Models
         public float Quantity { get; set; }
         public string Upc { get; set; }
         public DateTime DateAdded { get; set; }
+        public float Usage { get; set; }
+        public DateTime DateModified { get; set; }
 
         public int CategoryID { get; set; }
         public InventoryCategory Category { get; set; }

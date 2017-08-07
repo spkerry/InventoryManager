@@ -70,7 +70,7 @@ namespace InventoryManager.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    return Redirect("/Inventory");
+                    return Redirect("/Category/Index");
                 }
                 if (result.RequiresTwoFactor)
                 {
