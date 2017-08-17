@@ -8,9 +8,11 @@
     <tr>
         <th>Name</th>      
         <th>Upc</th>
+        <th>Unit</th>
         <th>Cost</th>
         <th>Date Added</th>
         <th>Category</th>
+        <th>Vendor</th>
         <th>Quantity</th>
     </tr>
 
@@ -19,9 +21,11 @@
         <tr>
             <td>@item.Name</td>
             <td>@item.Upc</td>
+            <td>@item.Unit</td>
             <td>@item.Cost</td>
             <td>@item.DateAdded</td>
             <td>@item.Category.Name</td>
+            <td>@item.Vendor.Name</td>
             <td>@item.Quantity</td>
         </tr>
     }

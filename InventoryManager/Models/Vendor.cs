@@ -9,10 +9,10 @@ namespace InventoryManager.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public float Cost { get; set; }
         public DateTime DateAdded { get; set; }
-        public string Unit { get; set; }
-        public string Upc { get; set; }
+        public string Contact { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
 
         public IList<InventoryItem> Items { get; set; }
     }

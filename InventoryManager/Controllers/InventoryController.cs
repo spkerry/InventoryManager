@@ -28,7 +28,7 @@ namespace InventoryManager.Controllers
 
         public IActionResult Add()
         {
-            AddInventoryItemViewModel addInventoryItem = new AddInventoryItemViewModel(context.Categories.ToList());
+            AddInventoryItemViewModel addInventoryItem = new AddInventoryItemViewModel(context.Categories.ToList(), context.Vendors.ToList());
 
             return View(addInventoryItem);
         }
@@ -39,6 +39,7 @@ namespace InventoryManager.Controllers
             if (ModelState.IsValid)
             {
                 InventoryCategory newInventoryCategory = context.Categories.Single(c => c.ID == addInventoryItemViewModel.CategoryID);
+                Vendor newVendor = context.Vendors.Single(v => v.ID == addInventoryItemViewModel.VendorID);
 
                 InventoryItem newItem = new InventoryItem
                 {
@@ -46,8 +47,10 @@ namespace InventoryManager.Controllers
                     Upc = addInventoryItemViewModel.Upc,
                     Cost = addInventoryItemViewModel.Cost,
                     Quantity = addInventoryItemViewModel.Quantity,
-                    DateAdded = DateTime.Now.Date,
-                    Category = newInventoryCategory
+                    Unit = addInventoryItemViewModel.Unit,
+                    DateAdded = DateTime.Now,
+                    Category = newInventoryCategory,
+                    Vendor = newVendor
                 };
 
                 context.Items.Add(newItem);
@@ -57,7 +60,7 @@ namespace InventoryManager.Controllers
             }
             else
             {
-                AddInventoryItemViewModel addInventoryItemViewModel1 = new AddInventoryItemViewModel(context.Categories.ToList());
+                AddInventoryItemViewModel addInventoryItemViewModel1 = new AddInventoryItemViewModel(context.Categories.ToList(), context.Vendors.ToList());
                 return View(addInventoryItemViewModel1);
             }
         }

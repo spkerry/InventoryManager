@@ -1,0 +1,25 @@
+﻿@model List<InventoryManager.Models.Vendor>
+<h1>Vendors</h1>
+
+<ul>
+    @foreach (var vendor in Model)
+    {
+        <li><p><a asp-controller="Vendor" asp-action="View" asp-route-id="@vendor.ID">@vendor.Name</a></p>
+            <p><b>Contact: </b>&nbsp;@vendor.Contact</p>
+            <p><b>Email: </b>&nbsp;@vendor.Email</p>
+            <p><b>Phone Number:</b>&nbsp;@vendor.PhoneNumber</p>
+            <p><b>Vendor Since: </b>&nbsp;@vendor.DateAdded</p>
+            <br /><br />
+        </li>
+
+        
+    }
+</ul>
+
+@if (Model.Count == 0)
+{
+    <p>No Vendors</p>
+
+}
+
+<p><a asp-controller="Vendor" asp-action="Add">Add Vendor</a></p>

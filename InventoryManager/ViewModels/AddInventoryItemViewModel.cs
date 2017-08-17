@@ -16,17 +16,26 @@ namespace InventoryManager.ViewModels
 
         public float Quantity { get; set; }
 
+        public string Unit { get; set; }
+
         [Required]
         [Display(Name = "Category")]
         public int CategoryID { get; set; }
 
+        [Required]
+        [Display(Name="Vendor")]
+        public int VendorID { get; set; }
+
         public List<SelectListItem> Categories { get; set; }
+
+        public List<SelectListItem> Vendors { get; set; }
 
         public AddInventoryItemViewModel() { }
 
-        public AddInventoryItemViewModel(IEnumerable<InventoryCategory> categories)
+        public AddInventoryItemViewModel(IEnumerable<InventoryCategory> categories, IEnumerable<Vendor> vendors)
         {
             Categories = new List<SelectListItem>();
+            Vendors = new List<SelectListItem>();
 
             foreach (var category in categories)
             {
@@ -34,6 +43,16 @@ namespace InventoryManager.ViewModels
                 {
                     Value = category.ID.ToString(),
                     Text = category.Name
+                });
+            }
+
+            foreach (var vendor in vendors)
+            {
+                Vendors.Add(new SelectListItem
+                {
+                    Value = vendor.ID.ToString(),
+                    Text = vendor.Name
+                    
                 });
             }
         }
