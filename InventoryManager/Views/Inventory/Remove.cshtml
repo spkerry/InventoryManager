@@ -1,0 +1,19 @@
+﻿<h1>@ViewBag.title</h1>
+
+<h4>Only items with no quantity can be removed.</h4><br />
+
+<form method="post">
+    @foreach (var item in ViewBag.items)
+    {
+        @if (item.Quantity == 0)
+        {
+            <input type="checkbox" name="itemIds" id="@item.ID" value="@item.ID" />
+            <label for="@item.ID">@item.Name</label>
+            <br />
+
+        }
+
+    }
+    <br/><br/>
+    <input type="submit" value="Remove Item(s)"  />
+</form>

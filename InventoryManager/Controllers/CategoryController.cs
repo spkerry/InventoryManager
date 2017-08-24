@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManager.Controllers
 {
@@ -53,6 +54,22 @@ namespace InventoryManager.Controllers
             {
                 return View(addCategoryViewModel);
             }
+        }
+
+        public IActionResult ItemsByCategory(int id)
+        {
+            if (id == 0)
+            {
+                return Redirect("/Index");
+            }
+
+            InventoryCategory theCategory = context.Categories
+                .Include(cat => cat.Items)
+                .Single(cat => cat.ID == id);
+
+            ViewBag.title = "Items in: " + theCategory.Name;
+            ViewBag.name = theCategory.Name;
+            return View(theCategory.Items);
         }
     }
 }

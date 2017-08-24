@@ -21,7 +21,7 @@ namespace InventoryManager.Controllers
 
         public IActionResult Index()
         {
-            IList<InventoryItem> items = context.Items.Include(i => i.Category).ToList();
+            IList<InventoryItem> items = context.Items.Include(i => i.Category).Include(v => v.Vendor).ToList();
 
             return View(items);
         }
@@ -63,6 +63,28 @@ namespace InventoryManager.Controllers
                 AddInventoryItemViewModel addInventoryItemViewModel1 = new AddInventoryItemViewModel(context.Categories.ToList(), context.Vendors.ToList());
                 return View(addInventoryItemViewModel1);
             }
+        }
+
+        public IActionResult Remove()
+        {
+            ViewBag.title = "Remove Items:";
+            ViewBag.items = context.Items.ToList();
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Remove(int[] itemIds)
+        {
+            foreach (int itemId in itemIds)
+            {
+                InventoryItem theItem = context.Items.Single(i => i.ID == itemId);
+                context.Items.Remove(theItem);
+            }
+
+            context.SaveChanges();
+
+            return Redirect("/Inventory/Index");
         }
     }
     

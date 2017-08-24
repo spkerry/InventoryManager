@@ -4,7 +4,8 @@
 <ul>
     @foreach (var vendor in Model)
     {
-        <li><p><a asp-controller="Vendor" asp-action="View" asp-route-id="@vendor.ID">@vendor.Name</a></p>
+        <li>
+            <p><a asp-controller="Vendor" asp-action="ItemsByVendor" asp-route-id="@vendor.ID">@vendor.Name</a></p>
             <p><b>Contact: </b>&nbsp;@vendor.Contact</p>
             <p><b>Email: </b>&nbsp;@vendor.Email</p>
             <p><b>Phone Number:</b>&nbsp;@vendor.PhoneNumber</p>
