@@ -56,6 +56,26 @@ namespace InventoryManager.Controllers
             }
         }
 
+        public IActionResult Edit(int id)
+        {
+            InventoryCategory singleCategory = context.Categories.Find(id);
+
+            return View(singleCategory);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(InventoryCategory editCategory)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Entry(editCategory).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
         public IActionResult ItemsByCategory(int id)
         {
             if (id == 0)
@@ -69,6 +89,7 @@ namespace InventoryManager.Controllers
 
             ViewBag.title = "Items in: " + theCategory.Name;
             ViewBag.name = theCategory.Name;
+            ViewBag.ID = theCategory.ID;
             return View(theCategory.Items);
         }
     }
