@@ -59,6 +59,26 @@ namespace InventoryManager.Controllers
             }
         }
 
+        public IActionResult Edit(int id)
+        {
+            Vendor editVendor = context.Vendors.Find(id);
+
+            return View(editVendor);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Vendor editVendor)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Entry(editVendor).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
         public IActionResult ItemsByVendor(int id)
         {
             if (id == 0)
@@ -72,6 +92,7 @@ namespace InventoryManager.Controllers
 
             ViewBag.Title = "Items from: " + theVendorItems.Name;
             ViewBag.name = theVendorItems.Name;
+            ViewBag.ID = theVendorItems.ID;
             return View(theVendorItems.Items);
         }
     }

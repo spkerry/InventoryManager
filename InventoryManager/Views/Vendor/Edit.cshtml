@@ -1,0 +1,35 @@
+﻿@model InventoryManager.Models.Vendor
+
+<h1>Edit vendor information.</h1>
+
+<form asp-controller="Vendor" asp-action="Edit" method="post">
+    <div class="form-group">
+        <b>Name</b>
+        <label value="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <div class="form-group">
+        <b>Contact</b>
+        <label value="Contact"></label>
+        <input class="form-control" asp-for="Contact" />
+        <span asp-validation-for="Contact"></span>
+    </div>
+    
+    <div class="form-group">
+        <b>Phone Number</b>
+        <label value="PhoneNumber"></label>
+        <input class="form-control" asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber"></span>
+    </div>
+    
+    <div class="form-group">
+        <b>Email</b>
+        <label value="Email"></label>
+        <input class="form-control" asp-for="Email" />
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <input type="submit" value="Edit Vendor" />
+</form>
