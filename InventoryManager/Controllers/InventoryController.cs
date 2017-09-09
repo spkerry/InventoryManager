@@ -65,6 +65,27 @@ namespace InventoryManager.Controllers
             }
         }
 
+        public IActionResult Edit(int id)
+        {
+            InventoryItem editItem = context.Items.Find(id);
+            EditInventoryItemViewModel editInventoryItem = new EditInventoryItemViewModel(editItem, context.Categories.ToList(), context.Vendors.ToList());
+            
+            
+            return View(editInventoryItem);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(InventoryItem editItem)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Entry(editItem).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+
+            return Redirect("/Inventory/Index");
+        }
+
         public IActionResult Remove()
         {
             ViewBag.title = "Remove Items:";

@@ -23,6 +23,7 @@
             <td>@item.Category.Name</td>
             <td>@item.Vendor.Name</td>
             <td>@item.Quantity</td>
+            <td><a asp-controller="Inventory" asp-action="Edit" asp-route-id="@item.ID">Edit</a></td>
         </tr>
     }
 </table>
