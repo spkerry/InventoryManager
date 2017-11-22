@@ -26,7 +26,7 @@ lead to miscommunication and errors.</p>
 </ul>
 
 <h3>Technologies</h3>
-<ul>l
+<ul>
     <li>C#</li>
     <li>ASP.NET MVC</li>
     <li>Entity Core Framework</li>
