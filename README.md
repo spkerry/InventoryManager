@@ -26,10 +26,10 @@ lead to miscommunication and errors.</p>
 </ul>
 
 <h3>Technologies</h3>
-<ul>
+<ul>l
     <li>C#</li>
     <li>ASP.NET MVC</li>
-    <li>Entity Core Framework<li>
+    <li>Entity Core Framework</li>
     <li>SMPT Client</li>
     <li>ASP.NET Identity</li>
 </ul>
