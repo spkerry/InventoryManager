@@ -22,7 +22,7 @@ lead to miscommunication and errors.</p>
     <li>User sign-up, login, and validation.</li>
     <li>Inventory items have categories for convenient grouping.</li>
     <li>Orders can be created for each vendor and sent via email or text message.</li>
-    <li>CRUD access on items, categories, and vendors.<li>
+    <li>CRUD access on items, categories, and vendors.</li>
 </ul>
 
 <h3>Technologies</h3>
