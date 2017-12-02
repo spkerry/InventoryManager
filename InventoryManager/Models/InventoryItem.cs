@@ -16,11 +16,9 @@ namespace InventoryManager.Models
         public DateTime DateModified { get; set; }
         public string Unit { get; set; }
 
-        [ForeignKey("InventoryCatagory")]
         public int CategoryID { get; set; }
         public InventoryCategory Category { get; set; }
 
-        [ForeignKey("Vendor")]
         public int VendorID { get; set; }
         public Vendor Vendor { get; set; }
 

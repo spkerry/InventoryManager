@@ -8,8 +8,8 @@ using InventoryManager.Data;
 namespace InventoryManager.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171202031853_VendorOrder.modOrder")]
-    partial class VendorOrdermodOrder
+    [Migration("20171202045442_two")]
+    partial class two
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

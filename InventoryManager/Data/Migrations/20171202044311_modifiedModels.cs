@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace InventoryManager.Data.Migrations
 {
-    public partial class ModItemOrder : Migration
+    public partial class modifiedModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

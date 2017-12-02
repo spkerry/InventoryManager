@@ -7,6 +7,7 @@ namespace InventoryManager.Models
 {
     public class Order
     {
+        public int ID { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime ReceivedDate { get; set; }
 
