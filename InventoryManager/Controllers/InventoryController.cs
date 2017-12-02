@@ -65,6 +65,49 @@ namespace InventoryManager.Controllers
             }
         }
 
+        public IActionResult Count(int id)
+        {
+            if(id == 0)
+            {
+                IList<InventoryItem> items = context.Items.Include(i => i.Category).Include(v => v.Vendor).ToList();
+
+                ViewBag.Name = "All items";
+                return View(items);
+            }
+            else
+            {
+                InventoryCategory countCategory = context.Categories
+                .Include(cat => cat.Items)
+                .Single(cat => cat.ID == id);
+
+                ViewBag.name = countCategory.Name;
+                ViewBag.ID = countCategory.ID;
+
+                return View(countCategory.Items);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Count(InventoryItem[] items)
+        {
+            foreach (InventoryItem item in items)
+            {
+                context.Entry(item).State = EntityState.Modified;
+                item.TotalUsage += (item.Quantity - item.TempUsage);
+                item.Quantity = item.TempUsage;
+                item.DateModified = DateTime.Now;
+            }
+            context.SaveChanges();
+            return Redirect("/Inventory/Index");
+        }
+
+        public IActionResult CountCategory()
+        {
+            List<InventoryCategory> categories = context.Categories.ToList();
+
+            return View(categories);
+        }
+
         public IActionResult Edit(int id)
         {
             InventoryItem editItem = context.Items.Find(id);

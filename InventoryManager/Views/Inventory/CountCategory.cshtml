@@ -1,0 +1,15 @@
+﻿@model List<InventoryManager.Models.InventoryCategory>
+
+<h1>Count Inventory</h1><br />
+<h3>Count by Category</h3>
+
+<ul>
+    @foreach (var category in Model)
+    {
+        <li><a asp-controller="Inventory" asp-action="Count" asp-route-id="@category.ID">@category.Name</a></li>
+    }
+    <li><a asp-controller="Inventory" asp-action="Count" asp-route-id="0">Count All</a></li>
+</ul>
+
+
+

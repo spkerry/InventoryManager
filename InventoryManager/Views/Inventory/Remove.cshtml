@@ -8,9 +8,9 @@
         @if (item.Quantity == 0)
         {
             <input type="checkbox" name="itemIds" id="@item.ID" value="@item.ID" />
-            <label for="@item.ID">@item.Name</label>
+            
+            <label for="@item.ID">@item.Name</label> @item.Upc 
             <br />
-
         }
 
     }

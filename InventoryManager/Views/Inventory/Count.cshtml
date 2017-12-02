@@ -1,0 +1,31 @@
+﻿@model List<InventoryManager.Models.InventoryItem>
+
+<h1>Count Inventory</h1><br />
+<h3>Items in category: @ViewBag.Name</h3>
+
+<form method="post">
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Upc</th>
+            <th>Unit</th>
+            <th>Last Count Date</th>
+            <th>Starting Quantity</th>
+            <th>Onhand Quantity</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Upc</td>
+                <td>@item.Unit</td>
+                <td>@item.DateModified</td>
+                <td>@item.Quantity</td>
+                <td><input type="number" name="items" asp-for="@item.TempUsage" min="0" /></td>
+            </tr>
+        }
+    </table>
+
+    <input type="submit" value="Update Inventory" />
+</form>

@@ -38,5 +38,7 @@
         <select asp-for="VendorID" asp-items="Model.Vendors"></select>
     </div>
 
+    <p>Date Added: @Model.Item.DateAdded</p>
+    <p>Last Count Date: @Model.Item.DateModified</p>
     <input type="submit" value="Save Changes" />
 </form>

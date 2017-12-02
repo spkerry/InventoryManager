@@ -36,7 +36,9 @@ namespace InventoryManager.ViewModels
                 Name = item.Name,
                 Upc = item.Upc,
                 Cost = item.Cost,
-                Unit = item.Unit
+                Unit = item.Unit,
+                DateAdded = item.DateAdded,
+                DateModified = item.DateModified
             };
 
             Categories = new List<SelectListItem>();

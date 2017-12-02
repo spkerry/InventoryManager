@@ -11,7 +11,8 @@ namespace InventoryManager.Models
         public float Quantity { get; set; }
         public string Upc { get; set; }
         public DateTime DateAdded { get; set; }
-        public float Usage { get; set; }
+        public float TotalUsage { get; set; }
+        public float TempUsage { get; set; }
         public DateTime DateModified { get; set; }
         public string Unit { get; set; }
 
